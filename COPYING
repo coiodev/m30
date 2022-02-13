@@ -1,0 +1,6 @@
+Format: http://dep.debian.net/deps/dep5
+Name: mgmt30
+
+Files: *
+Copyright: (c) 2021 Joao Eduardo Luis <joao@wipwd.dev>, unless otherwise specified
+License: AGPL-3.0 (see LICENSE), unless otherwise specified
