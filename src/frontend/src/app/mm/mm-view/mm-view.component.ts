@@ -23,16 +23,6 @@ export class MMViewComponent implements OnInit, OnDestroy {
   motivators: Motivator[] = [];
   entries: Entry[] = [];
 
-  source = this.dnd.dragSource("MOTIVATOR", {
-    beginDrag: () => {
-      console.log("begin dragging motivator");
-      return {};
-    },
-    endDrag: (monitor) => {
-      console.log("end dragging motivator");
-    },
-  });
-
   isDragging$ = false;
 
   isDragging(event: boolean) {
@@ -55,7 +45,6 @@ export class MMViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.source.unsubscribe();
       for (let entry of this.motivators) {
         entry.isUsed.unsubscribe();
       }
