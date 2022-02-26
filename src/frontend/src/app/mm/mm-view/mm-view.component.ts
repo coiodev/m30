@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DndService } from '@ng-dnd/core';
+import { BehaviorSubject } from 'rxjs';
+import { MMService } from '../mm.service';
 
 interface Motivator {
   name: string;
-  isUsed: boolean;
+  isUsed: BehaviorSubject<boolean>;
 }
 
 interface Entry {
@@ -15,29 +18,60 @@ interface Entry {
   templateUrl: './mm-view.component.html',
   styleUrls: ['./mm-view.component.scss']
 })
-export class MMViewComponent implements OnInit {
+export class MMViewComponent implements OnInit, OnDestroy {
 
-  motivators: Motivator[] = [
-    { name: "acceptance", isUsed: false },
-    { name: "curiosity", isUsed: false },
-    { name: "freedom", isUsed: false },
-    { name: "goal", isUsed: false },
-    { name: "honor", isUsed: false },
-    { name: "mastery", isUsed: false },
-    { name: "order", isUsed: false },
-    { name: "power", isUsed: false },
-    { name: "relatedness", isUsed: false },
-    { name: "status", isUsed: false },
-  ];
+  // motivators: Motivator[] = [
+  //   { name: "acceptance", isUsed: false },
+  //   { name: "curiosity", isUsed: false },
+  //   { name: "freedom", isUsed: false },
+  //   { name: "goal", isUsed: false },
+  //   { name: "honor", isUsed: false },
+  //   { name: "mastery", isUsed: false },
+  //   { name: "order", isUsed: false },
+  //   { name: "power", isUsed: false },
+  //   { name: "relatedness", isUsed: false },
+  //   { name: "status", isUsed: false },
+  // ];
+  motivators: Motivator[] = [];
 
   entries: Entry[] = [];
 
-  constructor() { }
+  source = this.dnd.dragSource("MOTIVATOR", {
+    beginDrag: () => {
+      console.log("begin dragging motivator");
+      return {};
+    },
+    endDrag: (monitor) => {
+      console.log("end dragging motivator");
+    },
+  });
+
+  isDragging$ = false;
+
+  isDragging(event: boolean) {
+    this.isDragging$ = event;
+  }
+
+  constructor(private dnd: DndService, private mmService: MMService) { }
 
   ngOnInit(): void {
     for (let i = 0; i < 10; ++i) {
       this.entries.push({ name: "", populated: false });
     }
+
+    Object.keys(this.mmService.motivators).forEach((name: string) => {
+      this.motivators.push({
+        name: name,
+        isUsed: this.mmService.subscribe(name),
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+      this.source.unsubscribe();
+      for (let entry of this.motivators) {
+        entry.isUsed.unsubscribe();
+      }
   }
 
 }

@@ -1,4 +1,4 @@
 <div class="card border-dark shadow">
   <p *ngIf="!hasAsset">No specified asset.</p>
-  <img *ngIf="hasAsset" src="{{asset}}">
+  <img *ngIf="hasAsset" src="{{asset}}" [class.disabled]="disabled">
 </div>

@@ -4,20 +4,29 @@ import { CommonModule } from '@angular/common';
 import { MMRoutingModule } from './mm-routing.module';
 import { CardComponent } from './card/card.component';
 import { MMViewComponent } from './mm-view/mm-view.component';
+import { MmHolderComponent } from './mm-holder/mm-holder.component';
+import { DndModule } from '@ng-dnd/core';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { MmSourceComponent } from './mm-source/mm-source.component';
 
 
 @NgModule({
   declarations: [
     CardComponent,
-    MMViewComponent
+    MMViewComponent,
+    MmHolderComponent,
+    MmSourceComponent
   ],
   imports: [
     CommonModule,
-    MMRoutingModule
+    MMRoutingModule,
+    DndModule.forRoot({ backend: HTML5Backend}),
   ],
   exports: [
     CardComponent,
-    MMViewComponent
+    MMViewComponent,
+    MmHolderComponent,
+    MmSourceComponent
   ]
 })
 export class MMModule { }

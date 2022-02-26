@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() name!: string;
+  @Input() disabled: boolean = false;
 
   asset!: string;
   hasAsset: boolean = false;

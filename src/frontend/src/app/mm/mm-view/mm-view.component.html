@@ -5,7 +5,7 @@
 
       <div class="row justify-content-center shadow-none bg-light rounded mt-2 pt-4 pb-4">
         <div class="col-1" *ngFor="let m of motivators">
-          <mgmt30-card [name]="m.name"></mgmt30-card>
+          <mgmt30-mm-source [name]="m.name" (isDragging)="isDragging($event)"></mgmt30-mm-source>
         </div>
       </div>
 
@@ -18,13 +18,12 @@
       <div class="row pt-3 pb-3 justify-content-center shadow bg-white rounded">
         
         <div class="col-1" *ngFor="let e of entries">
-          <div *ngIf="!e.populated"
-               class="card border-dark"
-               style="width: 90px; height: 90px; border-style: dashed;">
-            <p class="card-body">Drag Here</p>
-          </div>
-          <mgmt30-card *ngIf="e.populated" [name]="e.name"></mgmt30-card>
+          <mgmt30-mm-holder></mgmt30-mm-holder>
         </div>
+      </div>
+
+      <div class="row pt-3 pb-3 justify-content-center">
+        <span>is dragging: {{isDragging$}}</span>
       </div>
 
     </div>
