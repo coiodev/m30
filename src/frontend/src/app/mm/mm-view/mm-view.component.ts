@@ -20,20 +20,7 @@ interface Entry {
 })
 export class MMViewComponent implements OnInit, OnDestroy {
 
-  // motivators: Motivator[] = [
-  //   { name: "acceptance", isUsed: false },
-  //   { name: "curiosity", isUsed: false },
-  //   { name: "freedom", isUsed: false },
-  //   { name: "goal", isUsed: false },
-  //   { name: "honor", isUsed: false },
-  //   { name: "mastery", isUsed: false },
-  //   { name: "order", isUsed: false },
-  //   { name: "power", isUsed: false },
-  //   { name: "relatedness", isUsed: false },
-  //   { name: "status", isUsed: false },
-  // ];
   motivators: Motivator[] = [];
-
   entries: Entry[] = [];
 
   source = this.dnd.dragSource("MOTIVATOR", {
