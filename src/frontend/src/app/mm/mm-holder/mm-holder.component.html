@@ -2,6 +2,6 @@
      style="width: 90px; height: 90px; border-style: dashed"
      [class.hover]="isOver$|async"
      [dropTarget]="target">
-  <p *ngIf="!populated">Drag Here"</p>
-  <mgmt30-card *ngIf="populated" [name]="motivatorName"></mgmt30-card>
+  <p *ngIf="!entry.populated">Drag Here</p>
+  <mgmt30-card *ngIf="entry.populated" [name]="entry.motivator?.name"></mgmt30-card>
 </div>

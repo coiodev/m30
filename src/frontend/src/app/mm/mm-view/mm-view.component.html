@@ -1,3 +1,18 @@
+<dnd-preview [allBackends]="true" >
+  <ng-template let-type let-item="item">
+    <ng-container [ngSwitch]="type">
+      <div *ngSwitchCase="'IMPORTANCE'" [ngStyle]="item.size.style()">
+        <mgmt30-mm-holder [motivator]="item.data">
+        </mgmt30-mm-holder>
+      </div>
+      <div *ngSwitchCase="'MOTIVATOR'"
+           class="border-dark" style="width: 90px; height: 90px">
+        <mgmt30-card [name]="item.motivator?.name"></mgmt30-card>
+      </div>
+    </ng-container>
+  </ng-template>
+</dnd-preview>
+
 <div>
   <div class="row">
     <div class="col-1"></div>
@@ -5,7 +20,7 @@
 
       <div class="row justify-content-center shadow-none bg-light rounded mt-2 pt-4 pb-4">
         <div class="col-1" *ngFor="let m of motivators">
-          <mgmt30-mm-source [name]="m.name" (isDragging)="isDragging($event)"></mgmt30-mm-source>
+          <mgmt30-mm-source [name]="m.name"></mgmt30-mm-source>
         </div>
       </div>
 
@@ -15,16 +30,26 @@
         </div>
       </div>
 
-      <div class="row pt-3 pb-3 justify-content-center shadow bg-white rounded">
-        
-        <div class="col-1" *ngFor="let e of entries">
-          <mgmt30-mm-holder></mgmt30-mm-holder>
-        </div>
-      </div>
+      
+      <dnd-sortable-list class="row pt-3 pb-3 justify-content-center shadow bg-white rounded" style="display: flex;"
+          listId="ordered-motivators"
+          [children]="tmpList"
+          [spec]="spec"
+          [horizontal]="true">
 
-      <div class="row pt-3 pb-3 justify-content-center">
-        <span>is dragging: {{isDragging$}}</span>
-      </div>
+        <ng-template dndSortableTemplate let-context>
+
+          <div class="col-1"
+              [dndSortableRender]="context"
+              #render="dndSortableRender"
+              [dragSource]="render.source"
+              [noHTML5Preview]="true">
+            <mgmt30-mm-holder
+              [motivator]="context.data">
+            </mgmt30-mm-holder>
+          </div>
+        </ng-template>
+      </dnd-sortable-list>
 
     </div>
     <div class="col-1"></div>

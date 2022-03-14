@@ -1,42 +1,38 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DndService } from '@ng-dnd/core';
-import { MMService } from '../mm.service';
+import { MMService, Motivator, MotivatorEntry } from '../mm.service';
 
-declare type MotivatorType = {
-  name: string;
-};
+declare type MotivatorSourceType = { motivator: Motivator };
 
 @Component({
   selector: 'mgmt30-mm-holder',
   templateUrl: './mm-holder.component.html',
-  styleUrls: ['./mm-holder.component.scss']
+  styleUrls: ['./mm-holder.component.scss'],
 })
 export class MmHolderComponent implements OnInit, OnDestroy {
 
-  populated: boolean = false;
-  motivatorName: string = "";
+  @Input("motivator") entry: MotivatorEntry = { populated: false};
 
   target = this.dnd.dropTarget("MOTIVATOR", {
     canDrop: (monitor) => {
-      return !this.populated;
+      return !this.entry.populated;
     },
     drop: (monitor) => {
-      const item = monitor.getItem();
+      const item: MotivatorSourceType =
+        (monitor.getItem() as MotivatorSourceType);
       if (!!item) {
-        this.motivatorName = (item as MotivatorType).name;
-        this.populated = true;
-        this.mmService.use(this.motivatorName);
+        this.entry.motivator = item.motivator;
+        this.entry.populated = true;
+        this.mmService.use(this.entry.motivator.name);
       }
-      console.log("dropped item: ", item);
     },
   });
 
-  isOver$ = this.target.listen(m => m.isOver() && !this.populated);
+  isOver$ = this.target.listen(m => m.isOver() && !this.entry.populated);
 
   constructor(public dnd: DndService, private mmService: MMService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy() {
     this.target.unsubscribe();

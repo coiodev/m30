@@ -6,8 +6,10 @@ import { CardComponent } from './card/card.component';
 import { MMViewComponent } from './mm-view/mm-view.component';
 import { MmHolderComponent } from './mm-holder/mm-holder.component';
 import { DndModule } from '@ng-dnd/core';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { MmSourceComponent } from './mm-source/mm-source.component';
+import { DndSortableModule } from '@ng-dnd/sortable';
+import { DndMultiBackendModule, HTML5Backend, MouseTransition } from '@ng-dnd/multi-backend';
+import MultiBackend from 'dnd-multi-backend';
 
 
 @NgModule({
@@ -20,7 +22,16 @@ import { MmSourceComponent } from './mm-source/mm-source.component';
   imports: [
     CommonModule,
     MMRoutingModule,
-    DndModule.forRoot({ backend: HTML5Backend}),
+    DndModule.forRoot({
+      backend: MultiBackend,
+      options: {
+        backends: [
+          { backend: HTML5Backend, transition: MouseTransition, },
+        ],
+      },
+    }),
+    DndMultiBackendModule,
+    DndSortableModule,
   ],
   exports: [
     CardComponent,

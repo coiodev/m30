@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { DndService } from '@ng-dnd/core';
 import { BehaviorSubject } from 'rxjs';
-import { MMService } from '../mm.service';
+import { MMService, Motivator } from '../mm.service';
 
 @Component({
   selector: 'mgmt30-mm-source',
@@ -11,21 +11,18 @@ import { MMService } from '../mm.service';
 export class MmSourceComponent implements OnInit, OnDestroy {
 
   @Input() name: string = "";
-  @Output() isDragging = new EventEmitter<boolean>();
 
+  item: Motivator = { name: "", used: false};
   isUsed: boolean = false;
   sub?: BehaviorSubject<boolean> = undefined;
 
   source = this.dnd.dragSource("MOTIVATOR", {
     beginDrag: () => {
-      this.isDragging.emit(true);
-      return {name: this.name};
+      return {motivator: this.item};
     },
     canDrag: (monitor) => !this.isUsed,
-    endDrag: (monitor) => {
-      this.isDragging.emit(false);
-    },
-  })
+    endDrag: (monitor) => { },
+  });
 
   constructor(private dnd: DndService, private mmService: MMService) { }
 
@@ -33,7 +30,11 @@ export class MmSourceComponent implements OnInit, OnDestroy {
     this.sub = this.mmService.subscribe(this.name);
     this.sub.subscribe((value: boolean) => {
       this.isUsed = value;
-    })
+    });
+    if (this.name === "") {
+      throw new Error("must specify motivator name");
+    }
+    this.item = this.mmService.motivators[this.name];
   }
 
   ngOnDestroy(): void {
