@@ -1,0 +1,45 @@
+<header class="navbar navbar-expand-md navbar-dark bg-dark px-4 flex-column flex-md-row m30-navbar">
+  <a routerLink="/" aria-label="mgmt3.0" class="navbar-brand me-md-2 me-0">
+    M30
+  </a>
+  <div class="navbar-nav-scroll">
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item">
+        <a class="nav-link">Something</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Something Else</a>
+      </li>
+    </ul>
+  </div>
+  <ul class="navbar-nav ml-md-auto">
+    <li class="nav-item">
+      <a class="nav-link">Foo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Bar</a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-lg-1 m30-navigation"
+         style="border-right: 1px solid rgba(0, 0, 0, 0.1)">
+
+      <nav class="nav">
+        <ul ngbNav orientation="vertical">
+          <li class="nav-item">
+            <a class="nav-link">Foo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Bar</a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
