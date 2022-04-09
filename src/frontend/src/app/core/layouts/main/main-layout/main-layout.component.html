@@ -1,45 +1,60 @@
-<header class="navbar navbar-expand-md navbar-dark bg-dark px-4 flex-column flex-md-row m30-navbar">
+<header class="navbar navbar-expand navbar-dark bg-dark px-4 flex-column flex-md-row m30-navbar">
   <a routerLink="/" aria-label="mgmt3.0" class="navbar-brand me-md-2 me-0">
     M30
   </a>
   <div class="navbar-nav-scroll">
     <ul class="navbar-nav flex-row">
       <li class="nav-item">
-        <a class="nav-link">Something</a>
+        <a class="nav-link">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Something Else</a>
+        <a class="nav-link">Motivators</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Teams</a>
       </li>
     </ul>
   </div>
-  <ul class="navbar-nav ml-md-auto">
-    <li class="nav-item">
-      <a class="nav-link">Foo</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link">Bar</a>
-    </li>
-  </ul>
+  <div class="navbar-nav flex-row ms-md-auto me-4">
+    <ul class="navbar-nav ml-md-auto">
+      <li class="nav-item">
+        <a class="nav-link">Foo</a>
+      </li>
+    </ul>
+  </div>
+  <div ngbDropdown>
+    <div class="navbar-brand d-flex align-items-center" ngbDropdownToggle>
+      <div class="m30-topbar-circle text-center align-middle">J</div>
+      <span style="width: 0.3rem"></span>
+    </div>
+    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+      <a ngbDropdownItem>Foo</a>
+      <a ngbDropdownItem>Bar</a>
+    </div>
+  </div>
+
 </header>
 
 <div class="container-fluid">
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-lg-1 m30-navigation"
-         style="border-right: 1px solid rgba(0, 0, 0, 0.1)">
-
-      <nav class="nav">
+  <div class="row flex-lg-nowrap">
+    <div class="col-12 col-lg-1">
+      <nav class="nav m30-navigation" style="border-right: 1px solid rgba(0, 0, 0, 0.1)">
         <ul ngbNav orientation="vertical">
           <li class="nav-item">
-            <a class="nav-link">Foo</a>
+            <a class="nav-link">
+              Menu Foo
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Bar</a>
+            <a class="nav-link">Menu Bar</a>
           </li>
         </ul>
       </nav>
+    </div>
+
+    <main class="col-12 col-lg-11">
+        <router-outlet></router-outlet>
+    </main>
   </div>
 
-  <main>
-    <router-outlet></router-outlet>
-  </main>
 </div>
