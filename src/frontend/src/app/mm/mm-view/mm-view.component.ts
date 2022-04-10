@@ -62,10 +62,6 @@ export class MMViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      for (let entry of this.motivators) {
-        entry.isUsed.unsubscribe();
-      }
-      this.entriesSubject?.unsubscribe();
   }
 
   move(item: DraggedItem<MotivatorEntry>): MotivatorEntry[] {

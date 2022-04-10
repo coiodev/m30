@@ -38,7 +38,6 @@ export class MmSourceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
     this.source.unsubscribe();
   }
 
