@@ -7,18 +7,24 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version. 
 */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+export interface SidebarEntry {
+  label: string;
+  url: string;
+}
 
 @Component({
-  selector: 'mgmt30-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss']
+  selector: 'mgmt30-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
-export class MainLayoutComponent implements OnInit {
+export class SidebarComponent implements OnInit {
+
+  @Input() public entries: SidebarEntry[] = [];
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

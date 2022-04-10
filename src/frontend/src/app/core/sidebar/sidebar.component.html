@@ -1,0 +1,19 @@
+<!--
+  M30 - management 3.0 collaboration
+  Copyright (C) 2022 Joao Eduardo Luis <joao@coio.dev>
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+-->
+
+<nav class="nav m30-navigation">
+  <ul ngbNav orientation="vertical">
+    <li class="nav-item" *ngFor="let entry of entries">
+      <a class="nav-link" [routerLink]="entry.url">
+        {{entry.label}}
+      </a>
+    </li>    
+  </ul>
+</nav>

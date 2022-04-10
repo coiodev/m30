@@ -1,3 +1,12 @@
+<!--
+  M30 - management 3.0 collaboration
+  Copyright (C) 2022 Joao Eduardo Luis <joao@coio.dev>
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+-->
 <dnd-preview [allBackends]="true" >
   <ng-template let-type let-item="item">
     <ng-container [ngSwitch]="type">
@@ -15,8 +24,10 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
+    <div class="col-1">
+      <mgmt30-sidebar [entries]="sidebarEntries"></mgmt30-sidebar>
+    </div>
+    <div class="col-11">
 
       <div class="row justify-content-center shadow-none bg-light rounded mt-2 pt-4 pb-4">
         <div class="col-1" *ngFor="let m of motivators">
@@ -52,7 +63,6 @@
       </dnd-sortable-list>
 
     </div>
-    <div class="col-1"></div>
   </div>
 </div>
 

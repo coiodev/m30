@@ -1,7 +1,17 @@
+/**
+ * M30 - management 3.0 collaboration
+ * Copyright (C) 2022 Joao Eduardo Luis <joao@coio.dev>
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version. 
+*/
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DndService } from '@ng-dnd/core';
 import { SortableSpec, DraggedItem } from '@ng-dnd/sortable';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { SidebarEntry } from 'src/app/core/sidebar/sidebar.component';
 import { MMService, MotivatorEntry } from '../mm.service';
 
 interface Motivator {
@@ -24,6 +34,11 @@ export class MMViewComponent implements OnInit, OnDestroy {
   motivators: Motivator[] = [];
   entries: MotivatorEntry[] = [];
   tmpList: MotivatorEntry[] = [];
+
+  sidebarEntries: SidebarEntry[] = [
+    { label: "First Entry", url: "" },
+    { label: "Second Entry", url: "" },
+  ]
 
   private entriesSubject?: Subscription;
 

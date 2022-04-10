@@ -7,18 +7,14 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version. 
 */
-.m30-navbar {
-    height: 4rem;
-    position: sticky;
-    top: 0;
-    z-index: 1071;
-}
 
-.m30-topbar-circle {
-    border: 2px solid whitesmoke;
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    margin-right: 0 !important;
-    font-size: 18px;
+.m30-navigation {
+    height: calc(100vh - 4rem);
+    left: 0;
+    margin-left: 0;
+    position: sticky;
+    top: 4rem;
+    transition: all 0.3s;
+    z-index: 1000;
+    border-right: 1px solid rgba(0, 0, 0, 0.1)
 }
