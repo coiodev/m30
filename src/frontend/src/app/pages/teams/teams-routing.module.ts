@@ -9,32 +9,15 @@
 */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { MainViewComponent } from './main-view/main-view.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "home",
-    pathMatch: "full",
-  },
-  {
-    path: "home",
-    component: HomeComponent,
-  },
-  {
-    path: "mm",
-    loadChildren: () => import("./mm/mm.module").then(m => m.MMModule),
-  },
-  {
-    path: "teams",
-    loadChildren: () => 
-      import("./pages/teams/teams.module")
-      .then(m => m.TeamsModule),
-  }
+  { path: "", redirectTo: "main" },
+  { path: "main", component: MainViewComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class TeamsRoutingModule { }
