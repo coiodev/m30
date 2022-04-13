@@ -7,5 +7,106 @@
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 -->
+<div class="container-fluid">
 
-<p>Teams go here</p>
+  <div class="row">
+
+    <div class="col-3"></div>
+
+    <div class="col-6 mt-5">
+      <div class="row">
+        <div class="row-12 border-bottom">
+          <span class="fs-2 fw-bold">Your Teams</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+
+          <nav class="nav m30-teams-sidebar">
+            <ul ngbNav orientation="vertical" class="pt-4 w-100">
+              <li ngbNavItem *ngFor="let team of teams" class="me-4">
+                <div class="btn-group mb-3 w-100">
+                  <button type="button" class="btn btn-outline-primary">
+                    {{team.name}}
+                  </button>
+                  <div class="btn-group"
+                       ngbDropdown role="group"
+                       container="body"
+                  >
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary dropdown-toggle-split"
+                        ngbDropdownToggle
+                    ></button>
+                    <div class="dropdown-menu shadow-lg" ngbDropdownMenu>
+                      <button ngbDropdownItem>Rename</button>
+                      <div class="dropdown-divider"></div>
+                      <button
+                          ngbDropdownItem
+                          class="text-danger fw-bold">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item me-4">
+                <div class="w-100">
+                  <button type="button" class="btn btn-outline-secondary w-100">
+                    <i class="mdi mdi-plus"></i>
+                    Create
+                  </button>
+                </div>
+              </li>
+  
+            </ul>
+          </nav>
+
+        </div>
+
+        <div class="col-10 mt-4">
+
+          <ul ngbNav #nav="ngbNav" [destroyOnHide]="false" class="nav-tabs">
+
+            <li ngbNavItem>
+              <a ngbNavLink>Overview</a>
+              <ng-template ngbNavContent>
+    
+                <p>Team Overview</p>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink>Boards</a>
+              <ng-template ngbNavContent>
+    
+                <p>Team Boards</p>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink>Members</a>
+              <ng-template ngbNavContent>
+    
+                <p>Team Members</p>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink>Settings</a>
+              <ng-template ngbNavContent>
+    
+                <p>Team Settings</p>
+              </ng-template>
+            </li>
+    
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2 border-bottom"></div>
+    
+        </div>
+
+      </div>
+
+      <div class="col-3"></div>
+
+    </div>
+
+</div>

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 
 import { TeamsRoutingModule } from './teams-routing.module';
 import { MainViewComponent } from './main-view/main-view.component';
+import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { MainViewComponent } from './main-view/main-view.component';
   imports: [
     CommonModule,
     TeamsRoutingModule,
+    NgbNavModule,
+    NgbDropdownModule,
   ]
 })
 export class TeamsModule { }
