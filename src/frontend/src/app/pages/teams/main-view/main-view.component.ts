@@ -8,9 +8,12 @@
  * (at your option) any later version. 
 */
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 interface TeamEntry {
   name: string;
+  desc: string;
 }
 
 @Component({
@@ -20,14 +23,47 @@ interface TeamEntry {
 })
 export class MainViewComponent implements OnInit {
 
-  teams: TeamEntry[] = [
-    {name: "foo"},
-    {name: "bar"},
-  ];
+  teams: TeamEntry[] = [];
 
-  constructor() { }
+  teamCreateForm = this.fb.group({
+    name: [null, Validators.required],
+    desc: [null],
+  });
+
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  showDialog(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
+  createTeam(modal?: NgbModalRef) {
+    if (!this.teamCreateForm.valid) {
+      return;
+    }
+
+    const name: string = this.teamCreateForm.get("name")?.value;
+    let desc: string = this.teamCreateForm.get("desc")?.value;
+
+    if (!desc) {
+      desc = "";
+    }
+
+    if (!name) {
+      throw new Error("name is null");
+    }
+
+    this.teams.push({ name: name, desc: desc });
+    if (!!modal) {
+      modal.close();
+    }
+
+    this.teamCreateForm.reset();
   }
 
 }

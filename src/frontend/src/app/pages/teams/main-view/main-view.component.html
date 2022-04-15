@@ -7,6 +7,47 @@
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 -->
+<ng-template #createContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Create Team</h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.close()">
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="teamCreateForm">
+      <div class="mb-3">
+        <label for="createTeamName" class="form-label">Team Name</label>
+        <input
+            type="text"
+            id="createTeamName"
+            class="form-control"
+            formControlName="name">
+      </div>
+      <div class="mb-3">
+        <label for="createTeamDesc" class="form-lable">Description</label>
+        <input
+            type="text"
+            id="createTeamDesc"
+            class="form-control"
+            formControlName="desc">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+        type="submit"
+        class="btn btn-outline-primary"
+        (click)="createTeam(modal)"
+    >
+    Save
+    </button>
+  </div>
+</ng-template>
+
 <div class="container-fluid">
 
   <div class="row">
@@ -53,7 +94,8 @@
 
               <li class="nav-item me-4">
                 <div class="w-100">
-                  <button type="button" class="btn btn-outline-secondary w-100">
+                  <button type="button" class="btn btn-outline-secondary w-100"
+                          (click)="showDialog(createContent)">
                     <i class="mdi mdi-plus"></i>
                     Create
                   </button>

@@ -12,7 +12,12 @@ import { CommonModule } from '@angular/common';
 
 import { TeamsRoutingModule } from './teams-routing.module';
 import { MainViewComponent } from './main-view/main-view.component';
-import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbNavModule
+} from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +29,8 @@ import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
     TeamsRoutingModule,
     NgbNavModule,
     NgbDropdownModule,
+    ReactiveFormsModule,
+    NgbModalModule,
   ]
 })
 export class TeamsModule { }
